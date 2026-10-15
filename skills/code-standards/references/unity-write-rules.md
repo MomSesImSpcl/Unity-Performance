@@ -61,6 +61,35 @@ Apply these whenever you write or edit Unity C# code. They are the plugin's C#/U
 - Naming: one spelling per element across the repo; names carry units and spaces (`TimeoutMs`, `posWorld`); booleans read as positive questions (`IsAlive`, `HasLoaded`); function names are honest verb + object, with side effects in the name.
 - [DEFAULT] Functions ≤50 lines, ≤4 parameters, ≤3 nesting levels; comments explain why.
 
+## Documentation [HARD RULE]
+
+These rules fix coverage and styling; what each comment says is up to you.
+
+- Every type and member gets a `/// <summary>`, whatever its visibility: fields, properties, events, methods, constructors, nested types. Serialized inspector fields use `[Tooltip("…")]` instead.
+- Overrides and interface implementations get no comment (they inherit the base docs), unless they add or change behavior; then document only what differs.
+- Every parameter gets `<param>`. Every return value except `void`, `Task` and `UniTask` gets `<returns>`, including when it is `null`.
+- Every mention of a type, member or keyword type uses `<see cref="…"/>`: `<see cref="Player"/>`, `<see cref="Player.Id"/>`, `<see cref="StartMatch"/>`, `<see cref="int"/>`. Literals use `<c>true</c>`, `<c>null</c>`.
+- A property that only exposes a field has the summary `<see cref="field"/>.`
+- Multiple lines are separated by `<br/>`; side notes and caveats go in `<i>…</i>`; warnings go in `<b>…</b>`.
+- Events say when they fire, with a cref to the firing method; each event argument gets its own line: `<b><see cref="int"/>:</b> …`.
+- Booleans read "True if …, false otherwise."
+- Full sentences, third person, ending with a period. Tooltips follow the same rules, without XML tags.
+- Inline `//` comments only for the why: a required order, an edge case, the reason for an `#if`. TODOs are `// TODO: …`.
+- After any change, re-read the docs of everything you changed and of every comment that references it (crefs, tooltips, inline comments); fix any that are no longer accurate.
+
+```csharp
+/// <summary>
+/// Fired at the end of <see cref="StartMatch"/>, after every <see cref="Player"/> has drawn their hand. <br/>
+/// <i>Also fired on restart.</i>
+/// </summary>
+internal static event Action OnMatchStarted;
+/// <summary>
+/// Fired when a turn starts. <br/>
+/// <b><see cref="int"/>:</b> The <see cref="Player.Id"/> of the <see cref="Player"/> whose turn it is.
+/// </summary>
+internal static event Action<int> OnTurnStart;
+```
+
 ## Go deeper only when the task needs it
 
 - Collection choice, space budgets, data layout: code-standards' algorithm-efficiency reference.

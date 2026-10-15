@@ -18,7 +18,9 @@ process.stdin.on('end', () => {
       hookEventName: 'PostToolUse',
       additionalContext:
         `C# file changed: ${filePath}. If the unity-perf:code-standards skill is not loaded yet this session, ` +
-        'invoke it now. Before finishing, check your C# changes against its write-time rules and fix any violation. ' +
+        'invoke it now. Before finishing, check your C# changes against its write-time rules and fix any violation, ' +
+        'including the Documentation rules: every changed member documented, and every doc comment that describes ' +
+        'or references changed code still accurate. ' +
         'If the changed code runs per frame or often (Update/FixedUpdate/LateUpdate, per-frame loops, spawning, ' +
         `pooling, physics or UI refresh), also apply the patterns in ${zeroAllocPatterns}. ` +
         'If the code looks like it needs more than that, add one line to your reply suggesting a ' +

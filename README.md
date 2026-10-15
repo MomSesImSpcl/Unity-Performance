@@ -24,6 +24,10 @@ storms behind most UI stutter.
 - **Leaner skill structure.** Small entry points route to references by task;
   duplicate files were merged and navigation-only files removed. All technical
   rules are preserved and checked by `scripts/validate-skills.cjs`.
+- **Documentation rules.** Every C# type and member gets XML docs in one
+  consistent style (`<see cref>` for every reference, `<br/>`, `<i>`, `<b>`),
+  overrides only when they change behavior, and Claude re-checks affected docs
+  after every change.
 - **Stricter zero-GC tests.** Allocation tests must prove the measured code ran.
 
 Details and measurements: [MIGRATION.md](MIGRATION.md).
