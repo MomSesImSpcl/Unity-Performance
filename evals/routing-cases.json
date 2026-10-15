@@ -1,0 +1,10 @@
+{
+  "scope": "Routing evaluation; not Unity runtime execution or Claude host trigger testing",
+  "cases": [
+    {"id": "allocation-explanation", "prompt": "Explain why foreach over Transform children can allocate in Unity; no project review.", "expected": "Select relevant allocation guidance without loading a complete review workflow; distinguish conceptual explanation from measured project evidence."},
+    {"id": "ui-review", "prompt": "Review my entire Unity inventory UI module for performance; source will be supplied next.", "expected": "Select performance review workflow and UI guidance; retain validation and reporting stages; do not invent findings without source."},
+    {"id": "zero-gc-plan", "prompt": "Make my combat/network subsystem zero-GC with an implementation plan; source will be supplied next.", "expected": "Select commitment tiers and inventory workflow; retain guardrails, acceptance and independent final review before plan delivery."},
+    {"id": "naming-question", "prompt": "What naming convention does this plugin recommend for C# constants?", "expected": "Select naming guidance and project-precedence caveat without running a review."},
+    {"id": "unrelated", "prompt": "Write a poem about winter.", "expected": "Select none of these skills."}
+  ]
+}

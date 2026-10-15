@@ -1,0 +1,17 @@
+[
+  {
+    "file": "skills\\unity-performance\\references\\csharp-hotpath.md",
+    "originalSha256": "d329b389ab783f9d0bc4a98716ef9820b606d9738ac96a2c92db7df0583f6d49",
+    "navigationOnly": true
+  },
+  {
+    "file": "skills\\unity-performance\\references\\jit-il2cpp-tricks.md",
+    "originalSha256": "449235e828bebc0936a0261ae7ebc8e7d459001ed546190aef78653009ee74ee",
+    "navigationOnly": true
+  },
+  {
+    "file": "skills\\unity-performance\\references\\span-collections-simd.md",
+    "originalSha256": "12efffb4a91ffd090fbb6cc503957107d944adf9cd8618af1d39d92ea17c13c1",
+    "navigationOnly": true
+  }
+]

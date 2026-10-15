@@ -1,0 +1,31 @@
+{
+  "name": "unity-perf",
+  "version": "1.1.0",
+  "author": {
+    "name": "MomSesImSpcl"
+  },
+  "description": "Unity / C# performance optimization and code standards skill library. Three skills: performance optimization, zero-GC engineering plans, and code standards & review.",
+  "keywords": [
+    "unity",
+    "performance",
+    "optimization",
+    "coding-standards",
+    "dual-target"
+  ],
+  "targets": {
+    "claude": {
+      "enabled": true
+    },
+    "codex": {
+      "enabled": true,
+      "manifest": {
+        "interface": {
+          "displayName": "Unity Performance",
+          "shortDescription": "Unity / C# performance optimization and code standards",
+          "developerName": "MomSesImSpcl",
+          "category": "Developer Tools"
+        }
+      }
+    }
+  }
+}

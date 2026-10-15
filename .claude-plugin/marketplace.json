@@ -1,0 +1,24 @@
+{
+  "name": "gqy-plugins",
+  "owner": {
+    "name": "MomSesImSpcl",
+    "url": "https://github.com/MomSesImSpcl"
+  },
+  "description": "Claude Code plugins for Unity / C# game client development.",
+  "plugins": [
+    {
+      "name": "unity-perf",
+      "source": "./",
+      "description": "Unity / C# performance optimization and code standards skill library. Three skills: performance optimization, zero-GC engineering plans, and code standards & review.",
+      "category": "development",
+      "tags": [
+        "unity",
+        "csharp",
+        "performance",
+        "gc",
+        "code-review",
+        "coding-standards"
+      ]
+    }
+  ]
+}
