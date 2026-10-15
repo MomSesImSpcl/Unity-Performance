@@ -81,7 +81,10 @@ Claude often writes simple Unity scripts without loading `code-standards`, howev
 the description is worded. So the plugin ships a `PostToolUse` hook
 (`hooks/hooks.json`, `hooks/cs-review.cjs`): after Claude writes or edits a `.cs`
 file, it tells Claude to load `code-standards` and check the change against its
-write-time rules. Other files are ignored. It needs `node` on `PATH`. Codex does
+write-time rules. For code that runs per frame or often, it also points Claude
+to the zero-allocation patterns, and asks it to suggest (not start) a full
+`unity-performance` pass or `csharp-zero-gc` plan when one looks worthwhile.
+Other files are ignored. It needs `node` on `PATH`. Codex does
 not run it.
 
 ## Also works with Codex
