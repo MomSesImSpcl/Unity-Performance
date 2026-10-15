@@ -1,4 +1,4 @@
-# unity-perf
+# Unity Performance
 
 > Based on [tianzhiying/Unity-perf](https://github.com/tianzhiying/Unity-perf) (MIT).
 
@@ -9,6 +9,24 @@ Written for teams shipping mobile titles, so the guidance is concrete about the
 things that actually break on device: thermal throttling, IL2CPP and hot-update
 interpreter constraints, PSS budgets on low-end hardware, and the Canvas rebuild
 storms behind most UI stutter.
+
+## Changes from the original
+
+- **Automatic write-time checks.** A `PostToolUse` hook loads `code-standards`
+  after every `.cs` edit. Without it, Claude loaded the skill on few C# tasks;
+  with it, on every test run (see [Code-standards hook](#code-standards-hook-claude-code)).
+- **Hot-code patterns and suggestions.** For per-frame code, the hook also points
+  Claude to the zero-allocation patterns, and asks it to suggest (not start) a
+  `unity-performance` pass or `csharp-zero-gc` plan when one looks worthwhile.
+- **Write-time rulebook.** New `code-standards/references/unity-write-rules.md`
+  holds every C#/Unity rule needed while writing code. It matched the old
+  setup's code quality in testing while reading 2 skill files instead of 7.
+- **Leaner skill structure.** Small entry points route to references by task;
+  duplicate files were merged and navigation-only files removed. All technical
+  rules are preserved and checked by `scripts/validate-skills.cjs`.
+- **Stricter zero-GC tests.** Allocation tests must prove the measured code ran.
+
+Details and measurements: [MIGRATION.md](MIGRATION.md).
 
 ## Skills
 
@@ -34,13 +52,14 @@ content-preservation checks and entry-point sizes.
 ## Install
 
 ```bash
-/plugin marketplace add MomSesImSpcl/Unity-perf
+/plugin marketplace add MomSesImSpcl/Unity-Performance
 /plugin install unity-perf@gqy-plugins
 ```
 
-Then start a new session (or run `/reload-plugins`) and the skills load
-automatically — Claude picks them up from the task context, so you usually
-don't need to invoke anything by hand. To call one explicitly:
+Then start a new session (or run `/reload-plugins`). `code-standards` loads
+automatically whenever Claude edits C#. The other two load when your request
+matches them (stutter, FPS, zero-GC and so on), and Claude suggests them when
+edited code looks like it needs one. To call one explicitly:
 
 ```
 /unity-perf:unity-performance
@@ -64,8 +83,8 @@ The copy doesn't update with the plugin; copy it again after upgrading.
 ### Try it without installing
 
 ```bash
-git clone https://github.com/MomSesImSpcl/Unity-perf.git
-claude --plugin-dir ./Unity-perf
+git clone https://github.com/MomSesImSpcl/Unity-Performance.git
+claude --plugin-dir ./Unity-Performance
 ```
 
 ## Requirements
