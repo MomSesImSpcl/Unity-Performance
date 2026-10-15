@@ -71,9 +71,18 @@ claude --plugin-dir ./Unity-perf
 ## Requirements
 
 A host that supports skills and the corresponding plugin manifest. This package
-contains Markdown guidance and JSON metadata, with no MCP servers, hooks or
-executables. Some preserved workflows require host capabilities such as
+contains Markdown guidance, JSON metadata and one small hook script, with no MCP
+servers. Some preserved workflows require host capabilities such as
 independent subagents, repository inspection and access to profiling evidence.
+
+### Code-standards hook (Claude Code)
+
+Claude often writes simple Unity scripts without loading `code-standards`, however
+the description is worded. So the plugin ships a `PostToolUse` hook
+(`hooks/hooks.json`, `hooks/cs-review.cjs`): after Claude writes or edits a `.cs`
+file, it tells Claude to load `code-standards` and check the change against its
+write-time rules. Other files are ignored. It needs `node` on `PATH`. Codex does
+not run it.
 
 ## Also works with Codex
 
